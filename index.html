@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+  <meta charset="utf-8">
+  <title>ZingSoft Demo</title>
+  <style>
+    * {
+      font-family: 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans';
+      font-size: 12px;
+    }
+  </style>
+ 
+  <script nonce="undefined" src="https://cdn.zingchart.com/zingchart.min.js"></script>
+  <style>
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+ 
+    #myChart {
+      height: 100%;
+      width: 100%;
+      min-height: 150px;
+    }
+ 
+    .zc-ref {
+      display: none;
+    }
+  </style>
+</head>
+ 
+<body>
+ 
+  <div style="padding:10px">
+    Show from level <select id="minlevel">
+    <option value="0" selected>0</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+</select> to level <select id="maxlevel">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3" selected>3</option>
+</select>&nbsp;<button class="btn" id="btnrender">Render</button>
+  </div>
+ 
+  <div id="zc"></div>
+  <script>
+    ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"];
+    var fsdata = [{
+        "id": "españa",
+        "text": "España",
+        "parent": ""
+      },
+	  
+      {
+        "id": "cataluña",
+        "text": "Cataluña",
+        "parent": "españa",
+        "data-xx": "xx-cataluña"
+      },
+      {
+        "id": "barcelona",
+        "text": "Barcelona",
+        "parent": "cataluña",
+        "data-xx": "xx-barcelona"
+      },
+      {
+        "id": "bhombre",
+        "text": "Hombres",
+        "parent": "barcelona",
+        "value": 2804316
+      },
+      {
+        "id": "bmujer",
+        "text": "Mujeres",
+        "parent": "barcelona",
+        "value": 2939086
+      },
+      {
+        "id": "lleida",
+        "text": "Lleida",
+        "parent": "cataluña",
+        "data-xx": "xx-lleida"
+      },
+      {
+        "id": "lhombre",
+        "text": "Hombres",
+        "parent": "lleida",
+        "value": 223323
+      },
+      {
+        "id": "lbmujer",
+        "text": "Mujeres",
+        "parent": "lleida",
+        "value": 215194
+      },
+      {
+        "id": "tarragona",
+        "text": "Tarragona",
+        "parent": "cataluña",
+        "data-xx": "xx-tarragona"
+      },
+      {
+        "id": "thombre",
+        "text": "Hombres",
+        "parent": "tarragona",
+        "value": 408142
+      },
+      {
+        "id": "tbmujer",
+        "text": "Mujeres",
+        "parent": "tarragona",
+        "value": 408630
+      },
+      {
+        "id": "girona",
+        "text": "Girona",
+        "parent": "cataluña",
+        "data-xx": "xx-girona"
+      },
+      {
+        "id": "gihombre",
+        "text": "Hombres",
+        "parent": "girona",
+        "value": 391183
+      },
+      {
+        "id": "gibmujer",
+        "text": "Mujeres",
+        "parent": "girona",
+        "value": 390605
+      },
+
+      {
+        "id": "comunidadvalenciana",
+        "text": "Comunidad Valenciana",
+        "parent": "españa",
+        "data-xx": "xx-comunidadvalenciana"
+      },
+      {
+        "id": "valencia",
+        "text": "Valencia",
+        "parent": "comunidadvalenciana",
+        "data-xx": "xx-valencia"
+      },
+      {
+        "id": "vhombre",
+        "text": "Hombres",
+        "parent": "valencia",
+        "value": 1269466
+      },
+      {
+        "id": "vmujer",
+        "text": "Mujeres",
+        "parent": "valencia",
+        "value": 1322409
+      },
+      {
+        "id": "castellon",
+        "text": "Castellon",
+        "parent": "comunidadvalenciana",
+        "data-xx": "xx-castellon"
+      },
+      {
+        "id": "cshombre",
+        "text": "Hombres",
+        "parent": "castellon",
+        "value": 290799
+      },
+      {
+        "id": "csmujer",
+        "text": "Mujeres",
+        "parent": "castellon",
+        "value": 294791
+      },
+      {
+        "id": "alicante",
+        "text": "Alicante",
+        "parent": "comunidadvalenciana",
+        "data-xx": "xx-alicante"
+      },
+      {
+        "id": "ahombre",
+        "text": "Hombres",
+        "parent": "alicante",
+        "value": 931856
+      },
+      {
+        "id": "amujer",
+        "text": "Mujeres",
+        "parent": "alicante",
+        "value": 948032
+      },
+	  
+      {
+        "id": "regiondemurcia",
+        "text": "Región de Murcia",
+        "parent": "españa",
+        "data-xx": "xx-regiondemurcia"
+      },
+      {
+        "id": "murcia",
+        "text": "Murcia",
+        "parent": "regiondemurcia",
+        "data-xx": "xx-murcia"
+      },
+      {
+        "id": "muhombre",
+        "text": "Hombres",
+        "parent": "murcia",
+        "value": 756699
+      },
+      {
+        "id": "mumujer",
+        "text": "Mujeres",
+        "parent": "murcia",
+        "value": 754552
+      },
+	  
+      {
+        "id": "andalucia",
+        "text": "Andalucía",
+        "parent": "españa",
+        "data-xx": "xx-andalucia"
+      },
+      {
+        "id": "malaga",
+        "text": "Málaga",
+        "parent": "andalucia",
+        "data-xx": "xx-malaga"
+      },
+      {
+        "id": "mahombre",
+        "text": "Hombres",
+        "parent": "malaga",
+        "value": 825450
+      },
+      {
+        "id": "mamujer",
+        "text": "Mujeres",
+        "parent": "malaga",
+        "value": 860470
+      },
+      {
+        "id": "granada",
+        "text": "Granada",
+        "parent": "andalucia",
+        "data-xx": "xx-granada"
+      },
+      {
+        "id": "grhombre",
+        "text": "Hombres",
+        "parent": "granada",
+        "value": 452595
+      },
+      {
+        "id": "grmujer",
+        "text": "Mujeres",
+        "parent": "granada",
+        "value": 466573
+      },
+      {
+        "id": "almeria",
+        "text": "Almería",
+        "parent": "andalucia",
+        "data-xx": "xx-almeria"
+      },
+      {
+        "id": "alhombre",
+        "text": "Hombres",
+        "parent": "almeria",
+        "value": 371558
+      },
+      {
+        "id": "almujer",
+        "text": "Mujeres",
+        "parent": "almeria",
+        "value": 356387
+      },
+      {
+        "id": "jaen",
+        "text": "Jaén",
+        "parent": "andalucia",
+        "data-xx": "xx-jaen"
+      },
+      {
+        "id": "jhombre",
+        "text": "Hombres",
+        "parent": "jaen",
+        "value": 312364
+      },
+      {
+        "id": "jmujer",
+        "text": "Mujeres",
+        "parent": "jaen",
+        "value": 319017
+      },
+      {
+        "id": "cordoba",
+        "text": "Córdoba",
+        "parent": "andalucia",
+        "data-xx": "xx-cordoba"
+      },
+      {
+        "id": "cohombre",
+        "text": "Hombres",
+        "parent": "cordoba",
+        "value": 382886
+      },
+      {
+        "id": "comujer",
+        "text": "Mujeres",
+        "parent": "cordoba",
+        "value": 398565
+      },		  
+      {
+        "id": "sevilla",
+        "text": "Sevilla",
+        "parent": "andalucia",
+        "data-xx": "xx-sevilla"
+      },
+      {
+        "id": "sehombre",
+        "text": "Hombres",
+        "parent": "sevilla",
+        "value": 952695
+      },
+      {
+        "id": "semujer",
+        "text": "Mujeres",
+        "parent": "sevilla",
+        "value": 997524
+      },		  
+     {
+        "id": "huelva",
+        "text": "Huelva",
+        "parent": "andalucia",
+        "data-xx": "xx-huelva"
+      },
+      {
+        "id": "hhombre",
+        "text": "Hombres",
+        "parent": "huelva",
+        "value": 259496
+      },
+      {
+        "id": "hmujer",
+        "text": "Mujeres",
+        "parent": "huelva",
+        "value": 264782
+      },		  
+     {
+        "id": "cadiz",
+        "text": "Cadiz",
+        "parent": "andalucia",
+        "data-xx": "xx-cadiz"
+      },
+      {
+        "id": "cahombre",
+        "text": "Hombres",
+        "parent": "cadiz",
+        "value": 613561
+      },
+      {
+        "id": "camujer",
+        "text": "Mujeres",
+        "parent": "cadiz",
+        "value": 630488
+      },
+	  
+      {
+        "id": "extremadura",
+        "text": "Extremadura",
+        "parent": "españa",
+        "data-xx": "xx-extremadura"
+      },
+      {
+        "id": "caceres",
+        "text": "Cáceres",
+        "parent": "extremadura",
+        "data-xx": "xx-caceres"
+      },
+      {
+        "id": "cchombre",
+        "text": "Hombres",
+        "parent": "caceres",
+        "value": 194084
+      },
+      {
+        "id": "ccmujer",
+        "text": "Mujeres",
+        "parent": "caceres",
+        "value": 197766
+      },
+      {
+        "id": "badajoz",
+        "text": "Badajoz",
+        "parent": "extremadura",
+        "data-xx": "xx-badajoz"
+      },
+      {
+        "id": "bahombre",
+        "text": "Hombres",
+        "parent": "badajoz",
+        "value": 332204
+      },
+      {
+        "id": "bamujer",
+        "text": "Mujeres",
+        "parent": "badajoz",
+        "value": 339933
+      },
+	  
+      {
+        "id": "castillalamancha",
+        "text": "Castilla la Mancha",
+        "parent": "españa",
+        "data-xx": "xx-castillalamancha"
+      },
+      {
+        "id": "toledo",
+        "text": "Toledo",
+        "parent": "castillalamancha",
+        "data-xx": "xx-caceres"
+      },
+      {
+        "id": "tohombre",
+        "text": "Hombres",
+        "parent": "toledo",
+        "value": 353548
+      },
+      {
+        "id": "tomujer",
+        "text": "Mujeres",
+        "parent": "toledo",
+        "value": 350224
+      },
+      {
+        "id": "albacete",
+        "text": "Albacete",
+        "parent": "castillalamancha",
+        "data-xx": "xx-albacete"
+      },
+      {
+        "id": "abhombre",
+        "text": "Hombres",
+        "parent": "albacete",
+        "value": 194081
+      },
+      {
+        "id": "abmujer",
+        "text": "Mujeres",
+        "parent": "albacete",
+        "value": 194189
+      },
+      {
+        "id": "cuenca",
+        "text": "Cuenca",
+        "parent": "castillalamancha",
+        "data-xx": "xx-cuenca"
+      },
+      {
+        "id": "cuhombre",
+        "text": "Hombres",
+        "parent": "cuenca",
+        "value": 98430
+      },
+      {
+        "id": "cumujer",
+        "text": "Mujeres",
+        "parent": "cuenca",
+        "value": 97709
+      },
+      {
+        "id": "guadalajara",
+        "text": "Guadalajara",
+        "parent": "castillalamancha",
+        "data-xx": "xx-guadalajara"
+      },
+      {
+        "id": "guhombre",
+        "text": "Hombres",
+        "parent": "guadalajara",
+        "value": 132839
+      },
+      {
+        "id": "gumujer",
+        "text": "Mujeres",
+        "parent": "guadalajara",
+        "value": 129156
+      },
+      {
+        "id": "ciudadreal",
+        "text": "Ciudad Real",
+        "parent": "castillalamancha",
+        "data-xx": "xx-ciudadreal"
+      },
+      {
+        "id": "crhombre",
+        "text": "Hombres",
+        "parent": "ciudadreal",
+        "value": 244842
+      },
+      {
+        "id": "crmujer",
+        "text": "Mujeres",
+        "parent": "ciudadreal",
+        "value": 250203
+      },		  
+
+      {
+        "id": "comunidaddemadrid",
+        "text": "Comunidad de Madrid",
+        "parent": "españa",
+        "data-xx": "xx-comunidaddemadrid"
+      },
+      {
+        "id": "madrid",
+        "text": "Madrid",
+        "parent": "comunidaddemadrid",
+        "data-xx": "xx-madrid"
+      },
+      {
+        "id": "mhombre",
+        "text": "Hombres",
+        "parent": "madrid",
+        "value": 3243793
+      },
+      {
+        "id": "mmujer",
+        "text": "Mujeres",
+        "parent": "madrid",
+        "value": 3536095
+      },
+
+      {
+        "id": "castillayleon",
+        "text": "Comunidad de Castilla y León",
+        "parent": "españa",
+        "data-xx": "xx-castillayleon"
+      },
+      {
+        "id": "leon",
+        "text": "León",
+        "parent": "castillayleon",
+        "data-xx": "xx-castillayleon"
+      },
+      {
+        "id": "lehombre",
+        "text": "Hombres",
+        "parent": "leon",
+        "value": 221904
+      },
+      {
+        "id": "lemujer",
+        "text": "Mujeres",
+        "parent": "leon",
+        "value": 234535
+      },
+
+      {
+        "id": "burgos",
+        "text": "Burgos",
+        "parent": "castillayleon",
+        "data-xx": "xx-castillayleon"
+      },
+      {
+        "id": "buhombre",
+        "text": "Hombres",
+        "parent": "burgos",
+        "value": 178578
+      },
+      {
+        "id": "bumujer",
+        "text": "Mujeres",
+        "parent": "burgos",
+        "value": 179072
+      },
+      {
+        "id": "valladolid",
+        "text": "Valladolid",
+        "parent": "castillayleon",
+        "data-xx": "xx-castillayleon"
+      },
+      {
+        "id": "vahombre",
+        "text": "Hombres",
+        "parent": "valladolid",
+        "value": 253540
+      },
+      {
+        "id": "vamujer",
+        "text": "Mujeres",
+        "parent": "valladolid",
+        "value": 267109
+      },
+      {
+        "id": "soria",
+        "text": "Soria",
+        "parent": "castillayleon",
+        "data-xx": "xx-castillayleon"
+      },
+      {
+        "id": "sohombre",
+        "text": "Hombres",
+        "parent": "soria",
+        "value": 44927
+      },
+      {
+        "id": "somujer",
+        "text": "Mujeres",
+        "parent": "soria",
+        "value": 43957
+      },
+      {
+        "id": "palencia",
+        "text": "Palencia",
+        "parent": "castillayleon",
+        "data-xx": "xx-castillayleon"
+      },
+      {
+        "id": "pahombre",
+        "text": "Hombres",
+        "parent": "palencia",
+        "value": 79457
+      },
+      {
+        "id": "pamujer",
+        "text": "Mujeres",
+        "parent": "palencia",
+        "value": 80864
+      },
+      {
+        "id": "segovia",
+        "text": "Segovia",
+        "parent": "castillayleon",
+        "data-xx": "xx-castillayleon"
+      },
+      {
+        "id": "sghombre",
+        "text": "Hombres",
+        "parent": "segovia",
+        "value": 77033
+      },
+      {
+        "id": "sgmujer",
+        "text": "Mujeres",
+        "parent": "segovia",
+        "value": 76445
+      },
+      {
+        "id": "avila",
+        "text": "Avila",
+        "parent": "castillayleon",
+        "data-xx": "xx-castillayleon"
+      },
+      {
+        "id": "avhombre",
+        "text": "Hombres",
+        "parent": "avila",
+        "value": 79109
+      },
+      {
+        "id": "avmujer",
+        "text": "Mujeres",
+        "parent": "avila",
+        "value": 78555
+      },
+      {
+        "id": "zamora",
+        "text": "Zamora",
+        "parent": "castillayleon",
+        "data-xx": "xx-castillayleon"
+      },
+      {
+        "id": "zahombre",
+        "text": "Hombres",
+        "parent": "zamora",
+        "value": 84369
+      },
+      {
+        "id": "zamujer",
+        "text": "Mujeres",
+        "parent": "zamora",
+        "value": 86219
+      },
+      {
+        "id": "salamanca",
+        "text": "Salamanca",
+        "parent": "castillayleon",
+        "data-xx": "xx-castillayleon"
+      },
+      {
+        "id": "sahombre",
+        "text": "Hombres",
+        "parent": "salamanca",
+        "value": 159929
+      },
+      {
+        "id": "samujer",
+        "text": "Mujeres",
+        "parent": "salamanca",
+        "value": 169316
+      },
+	  
+      {
+        "id": "cacantabria",
+        "text": "Cantabria",
+        "parent": "españa",
+        "data-xx": "xx-cacantabria"
+      },
+      {
+        "id": "cantabria",
+        "text": "Cantabria",
+        "parent": "cacantabria",
+        "data-xx": "xx-cantabria"
+      },
+      {
+        "id": "canhombre",
+        "text": "Hombres",
+        "parent": "cantabria",
+        "value": 282559
+      },
+      {
+        "id": "canmujer",
+        "text": "Mujeres",
+        "parent": "cantabria",
+        "value": 300346
+      },
+
+      {
+        "id": "euskadi",
+        "text": "Euskadi",
+        "parent": "españa",
+        "data-xx": "xx-euskadi"
+      },
+      {
+        "id": "alava",
+        "text": "Alava",
+        "parent": "euskadi",
+        "data-xx": "xx-alava"
+      },
+      {
+        "id": "vihombre",
+        "text": "Hombres",
+        "parent": "alava",
+        "value": 164524
+      },
+      {
+        "id": "vimujer",
+        "text": "Mujeres",
+        "parent": "alava",
+        "value": 169416
+      },
+
+      {
+        "id": "vizcaya",
+        "text": "Vizcaya",
+        "parent": "euskadi",
+        "data-xx": "xx-vizcaya"
+      },
+      {
+        "id": "bihombre",
+        "text": "Hombres",
+        "parent": "vizcaya",
+        "value": 559798
+      },
+      {
+        "id": "bimujer",
+        "text": "Mujeres",
+        "parent": "vizcaya",
+        "value": 599645
+      },
+      {
+        "id": "guipuzcoa",
+        "text": "Guipuzcoa",
+        "parent": "euskadi",
+        "data-xx": "xx-guipuzcoa"
+      },
+      {
+        "id": "sshombre",
+        "text": "Hombres",
+        "parent": "guipuzcoa",
+        "value": 355130
+      },
+      {
+        "id": "ssmujer",
+        "text": "Mujeres",
+        "parent": "guipuzcoa",
+        "value": 371991
+      },
+
+      {
+        "id": "canarias",
+        "text": "Canarias",
+        "parent": "españa",
+        "data-xx": "xx-canarias"
+      },
+      {
+        "id": "laspalmas",
+        "text": "Las Palmas",
+        "parent": "canarias",
+        "data-xx": "xx-laspalmas"
+      },
+      {
+        "id": "gchombre",
+        "text": "Hombres",
+        "parent": "laspalmas",
+        "value": 562694
+      },
+      {
+        "id": "gcmujer",
+        "text": "Mujeres",
+        "parent": "laspalmas",
+        "value": 568371
+      },
+      {
+        "id": "tenerife",
+        "text": "Tenerife",
+        "parent": "canarias",
+        "data-xx": "xx-tenerife"
+      },
+      {
+        "id": "tfhombre",
+        "text": "Hombres",
+        "parent": "tenerife",
+        "value": 513491
+      },
+      {
+        "id": "tfmujer",
+        "text": "Mujeres",
+        "parent": "tenerife",
+        "value": 531396
+      },
+
+      {
+        "id": "caceuta",
+        "text": "Ceuta",
+        "parent": "españa",
+        "data-xx": "xx-caceuta"
+      },
+      {
+        "id": "ceuta",
+        "text": "Ceuta",
+        "parent": "caceuta",
+        "data-xx": "xx-caceuta"
+      },
+      {
+        "id": "cehombre",
+        "text": "Hombres",
+        "parent": "ceuta",
+        "value": 42542
+      },
+      {
+        "id": "cemujer",
+        "text": "Mujeres",
+        "parent": "ceuta",
+        "value": 41660
+      },
+
+      {
+        "id": "camelilla",
+        "text": "Melilla",
+        "parent": "españa",
+        "data-xx": "xx-camelilla"
+      },
+      {
+        "id": "melilla",
+        "text": "Melilla",
+        "parent": "camelilla",
+        "data-xx": "xx-caceuta"
+      },
+      {
+        "id": "mlhombre",
+        "text": "Hombres",
+        "parent": "melilla",
+        "value": 44162
+      },
+      {
+        "id": "mlmujer",
+        "text": "Mujeres",
+        "parent": "melilla",
+        "value": 42914
+      },
+
+      {
+        "id": "caislasbaleares",
+        "text": "Islas Baleares",
+        "parent": "españa",
+        "data-xx": "xx-caislasbaleares"
+      },
+      {
+        "id": "islasbaleares",
+        "text": "Islas Baleares",
+        "parent": "caislasbaleares",
+        "data-xx": "xx-islasbaleares"
+      },
+      {
+        "id": "ibhombre",
+        "text": "Hombres",
+        "parent": "islasbaleares",
+        "value": 584298
+      },
+      {
+        "id": "ibmujer",
+        "text": "Mujeres",
+        "parent": "islasbaleares",
+        "value": 587245
+      },
+
+      {
+        "id": "aragon",
+        "text": "Aragón",
+        "parent": "españa",
+        "data-xx": "xx-aragon"
+      },
+      {
+        "id": "zaragoza",
+        "text": "Zaragoza",
+        "parent": "aragon",
+        "data-xx": "xx-zaragoza"
+      },
+      {
+        "id": "zhombre",
+        "text": "Hombres",
+        "parent": "zaragoza",
+        "value": 475602
+      },
+      {
+        "id": "zmujer",
+        "text": "Mujeres",
+        "parent": "zaragoza",
+        "value": 496926
+      },
+      {
+        "id": "huesca",
+        "text": "Huesca",
+        "parent": "aragon",
+        "data-xx": "xx-huesca"
+      },
+      {
+        "id": "huhombre",
+        "text": "Hombres",
+        "parent": "huesca",
+        "value": 112479
+      },
+      {
+        "id": "humujer",
+        "text": "Mujeres",
+        "parent": "huesca",
+        "value": 110208
+      },
+      {
+        "id": "teruel",
+        "text": "Teruel",
+        "parent": "aragon",
+        "data-xx": "xx-teruel"
+      },
+      {
+        "id": "tehombre",
+        "text": "Hombres",
+        "parent": "teruel",
+        "value": 67975
+      },
+      {
+        "id": "temujer",
+        "text": "Mujeres",
+        "parent": "teruel",
+        "value": 66201
+      },
+
+      {
+        "id": "galicia",
+        "text": "Galicia",
+        "parent": "españa",
+        "data-xx": "xx-galicia"
+      },
+      {
+        "id": "coruña",
+        "text": "La Coruña",
+        "parent": "galicia",
+        "data-xx": "xx-coruña"
+      },
+      {
+        "id": "chombre",
+        "text": "Hombres",
+        "parent": "coruña",
+        "value": 537781
+      },
+      {
+        "id": "cmujer",
+        "text": "Mujeres",
+        "parent": "coruña",
+        "value": 584034
+      },
+      {
+        "id": "lugo",
+        "text": "Lugo",
+        "parent": "galicia",
+        "data-xx": "xx-lugo"
+      },
+      {
+        "id": "luhombre",
+        "text": "Hombres",
+        "parent": "lugo",
+        "value": 158842
+      },
+      {
+        "id": "lumujer",
+        "text": "Mujeres",
+        "parent": "lugo",
+        "value": 169104
+      },
+      {
+        "id": "ourense",
+        "text": "Ourense",
+        "parent": "galicia",
+        "data-xx": "xx-ourense"
+      },
+      {
+        "id": "ouhombre",
+        "text": "Hombres",
+        "parent": "ourense",
+        "value": 147078
+      },
+      {
+        "id": "oumujer",
+        "text": "Mujeres",
+        "parent": "ourense",
+        "value": 159572
+      },
+      {
+        "id": "pontevedra",
+        "text": "Pontevedra",
+        "parent": "galicia",
+        "data-xx": "xx-orense"
+      },
+      {
+        "id": "pohombre",
+        "text": "Hombres",
+        "parent": "pontevedra",
+        "value": 456452
+      },
+      {
+        "id": "pomujer",
+        "text": "Mujeres",
+        "parent": "pontevedra",
+        "value": 488956
+      },
+	  
+      {
+        "id": "comunidaddelarioja",
+        "text": "La Rioja",
+        "parent": "españa",
+        "data-xx": "xx-comunidaddelarioja"
+      },
+      {
+        "id": "larioja",
+        "text": "La Rioja",
+        "parent": "comunidaddelarioja",
+        "data-xx": "xx-rioja"
+      },
+      {
+        "id": "lohombre",
+        "text": "Hombres",
+        "parent": "larioja",
+        "value": 157835
+      },
+      {
+        "id": "lomujer",
+        "text": "Mujeres",
+        "parent": "larioja",
+        "value": 162079
+      },
+
+      {
+        "id": "conavarra",
+        "text": "Navarra",
+        "parent": "españa",
+        "data-xx": "xx-conavarra"
+      },
+      {
+        "id": "navarra",
+        "text": "Navarra",
+        "parent": "conavarra",
+        "data-xx": "xx-navarra"
+      },
+      {
+        "id": "pamhombre",
+        "text": "Hombres",
+        "parent": "navarra",
+        "value": 327226
+      },
+      {
+        "id": "pammujer",
+        "text": "Mujeres",
+        "parent": "navarra",
+        "value": 333971
+      },
+
+      {
+        "id": "coasturias",
+        "text": "Asturias",
+        "parent": "españa",
+        "data-xx": "xx-coasturias"
+      },
+      {
+        "id": "asturias",
+        "text": "Asturias",
+        "parent": "coasturias",
+        "data-xx": "xx-oviedo"
+      },
+      {
+        "id": "ashombre",
+        "text": "Hombres",
+        "parent": "asturias",
+        "value": 486066
+      },
+      {
+        "id": "asmujer",
+        "text": "Mujeres",
+        "parent": "asturias",
+        "value": 532718
+      },
+
+    ];
+ 
+    function render() {
+ 
+      var cdata = {
+        "background-color": "#f00 #0f0",
+        "type": "bubble-pack",
+        "plotarea": {
+          "margin": 5
+        },
+        "options": {
+          "active": true,
+          "padding": 1,
+          "min-size": 1,
+          "max-items": 999,
+          "min-level": minlevel.value,
+          "max-level": maxlevel.value,
+          "-filter": ["operator"],
+          "item": {
+            "-background-color": "#f90 #09f",
+            "-tooltip": {
+              "text": "%fullname<br>%fullvalue<br>%data-xx"
+            }
+          },
+          "-item-level-2": {
+            "background-color": "#090 #90f"
+          },
+          "-item-id-axis": {
+            "border-width": 5,
+            "background-color": "#333 #fff"
+          }
+        },
+        "series": fsdata,
+      };
+ 
+      zingchart.render({
+        id: 'zc',
+        width: 550,
+        height: 550,
+        output: 'svg',
+        data: cdata
+      });
+ 
+    };
+ 
+    render();
+ 
+    btnrender.addEventListener('click', render);
+  </script>
+</body>
+ 
+</html>
+
