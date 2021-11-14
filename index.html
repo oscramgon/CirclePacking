@@ -3,7 +3,7 @@
  
 <head>
   <meta charset="utf-8">
-  <title>ZingSoft Demo</title>
+  <title>Circle Packing</title>
   <style>
     * {
       font-family: 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans';
@@ -34,18 +34,19 @@
 </head>
  
 <body>
+<p style="font-size:20px;color:blue;">Información de distribución de población en España por país, comunidad autónoma, provincia y sexo</p>
  
   <div style="padding:10px">
-    Show from level <select id="minlevel">
+    Mostrar desde el nivel <select id="minlevel">
     <option value="0" selected>0</option>
     <option value="1">1</option>
     <option value="2">2</option>
     <option value="3">3</option>
-</select> to level <select id="maxlevel">
+</select> al nivel <select id="maxlevel">
     <option value="1">1</option>
     <option value="2">2</option>
     <option value="3" selected>3</option>
-</select>&nbsp;<button class="btn" id="btnrender">Render</button>
+</select>&nbsp;<button class="btn" id="btnrender">Representar</button>
   </div>
  
   <div id="zc"></div>
