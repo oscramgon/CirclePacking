@@ -3,3 +3,5 @@
 ##### Los datos utilizados se han obtenido en la web https://www.ine.es/jaxiT3/Tabla.htm?t=2853&L=0
 
 <FONT COLOR="red">Texto ROJO </FONT>
+
+<span style="color:red"> *some emphasized markdown text*</span>
